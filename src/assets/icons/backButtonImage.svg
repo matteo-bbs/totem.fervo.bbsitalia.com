@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+  <g id="backButtonImage" transform="translate(-28 -83)">
+    <rect id="Rettangolo_1920" data-name="Rettangolo 1920" width="34" height="34" rx="6" transform="translate(28 83)" fill="#00577c"/>
+    <path id="up-arrow" d="M32.005,21.469a1.256,1.256,0,0,1-1.8,1.755l-6.664-6.769-6.685,6.81a1.253,1.253,0,1,1-1.671-1.776l7.667-7.667a1.253,1.253,0,0,1,.689-.355,1.233,1.233,0,0,1,.877.376Z" transform="translate(26.351 123.46) rotate(-90)" fill="#fff"/>
+  </g>
+</svg>

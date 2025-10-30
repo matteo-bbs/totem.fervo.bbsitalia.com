@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+html{
+    font-family: 'Frutiger LT Std';
+
+}
+
+.bg-opacity-60 {
+    background-color: rgba(0, 0, 0, 0.6); /* nero al 60% */
+}
+
+
+button.pswp__button.pswp__button--custom-close.pswp__hide-on-close {
+    position: absolute!important;
+    bottom: 10px!important;
+    left: 10px!important;
+    background: transparent!important;
+    width: 70px!important;
+    text-align: center!important;
+}
+
+.pswp__custom-btn {
+    background: transparent!important;
+    width: 70px!important;
+    text-align: center!important;
+}
+
+button.pswp__button.pswp__button--custom-zoom.pswp__hide-on-close {
+    position: absolute!important;
+    bottom: 10px!important;
+    left: 100px!important;
+    background: transparent!important;
+    width: 70px!important;
+    text-align: center!important;
+}
+
+.pswp__custom-btn {
+    background: transparent!important;
+    width: 70px!important;
+    text-align: center!important;
+}

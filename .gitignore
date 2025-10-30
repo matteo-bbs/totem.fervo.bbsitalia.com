@@ -1,0 +1,54 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Build
+build/
+*.env
+
+# Server-side (se hai una cartella 'server' separata)
+server/node_modules/
+server/dist/
+server/*.log
+server/.env   # Ignora il file di ambiente per il server
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Files generati da editor o strumenti vari
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env
+.env.production
+.env.*   # Aggiungi altri file .env specifici come .env.production
+
+# Non tracciare file .env
+server/.env
+
+#non taracciare audio
+
+/server/public/*.mp3

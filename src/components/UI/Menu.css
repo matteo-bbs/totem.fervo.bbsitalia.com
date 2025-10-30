@@ -1,0 +1,69 @@
+.h-50vh{
+    height: 50vh;
+}
+.h-37vh{
+    height: 37vh;
+}
+
+.h-0{
+    height: 0;
+    overflow: hidden;
+}
+
+.p-5{
+    padding: 1.25rem;
+}
+
+.p-0{
+    padding: 0;
+}
+
+.top-540px{
+    top: 540px;
+}
+
+.top-580px{
+    top: 580px;
+}
+
+.b-t-l-r-15{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.h-57vh{
+    height: 57vh;
+}
+
+
+@keyframes slideFromLeft {
+    0% {
+        transform: translateX(-90%);
+        width: 0px;
+    }
+    100% {
+        transform: translateX(0);
+        width: 130px;
+    }
+}
+@keyframes showText {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.pillow {
+    position: relative;
+    animation: slideFromLeft 1s 2s ease forwards;
+    width: 0px;
+    overflow: hidden;
+}
+
+.pillow p {
+    animation: showText 1s 3s ease forwards;
+    opacity: 0;
+}

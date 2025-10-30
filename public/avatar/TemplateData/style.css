@@ -1,0 +1,65 @@
+body { padding: 0; margin: 0 }
+#unity-container { position: absolute; background: url("./sfondo_3.png"); background-repeat: no-repeat; background-size: 100% }
+#unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
+#unity-container.unity-mobile { position: fixed; width: 100%; height: 100% }
+#unity-canvas { background: #DDDDDD }
+.unity-mobile #unity-canvas { width: 100%; height: 100% }
+/* Contenitore principale centrato */
+#unity-loading-bar {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+    overflow: hidden;
+
+}
+
+#unity-logo {
+    width: 1080px;
+    height: 1920px;
+    background: url('my-logo.png') no-repeat center;
+    background-size: 200px;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+    top:-200px
+}
+
+#unity-progress-bar-empty {
+    width: 300px; /* Deve avere la stessa larghezza del logo per l'allineamento */
+    height: 36px;
+    margin-top: 20px; /* Spazio tra logo e barra */
+    background: url('progress-bar-empty-light.png') no-repeat center;
+    background-size: cover;
+    position: absolute;
+    bottom:48%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+#unity-progress-bar-full {
+    width: 0%; /* Parte vuota e si riempie */
+    height: 100%;
+    background: url('progress-bar-full-light.png') no-repeat left center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+#unity-footer { display: none !important; height: 0 !important; padding: 0 !important; margin: 0 !important; overflow: hidden !important; }
+.unity-mobile #unity-footer { display: none }
+#unity-logo-title-footer { float:left; width: 102px; height: 38px; background: url('unity-logo-title-footer.png') no-repeat center }
+#unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px }
+#unity-fullscreen-button { cursor:pointer; float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center }
+#unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }
+
+*{
+    overflow: hidden!important;
+}

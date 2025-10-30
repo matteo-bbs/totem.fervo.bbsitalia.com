@@ -1,0 +1,167 @@
+import React, { useEffect, useState } from "react";
+import GalleryItems from "./GalleryItems";
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
+import axios from "../api";
+
+const Gallery = (props) => {
+    const currentLanguage = localStorage.getItem("i18nextLng");
+
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        axios
+            .get(
+                `${import.meta.env.VITE_APP_BACKEND_URL}/api/media/galleria/${props.images}`
+            )
+            .then((response) => {
+                setData(response.data);
+                setIsLoading(false);
+            })
+            .catch((error) => console.log(error));
+    }, []);
+
+    useEffect(() => {
+        let lightbox = new PhotoSwipeLightbox({
+            gallery: "#gallery",
+            children: "a",
+            pswpModule: () => import("photoswipe"),
+        });
+
+        lightbox.on("close", () => {
+            // console.log('close');
+        });
+        lightbox.init();
+        return () => {
+            lightbox.destroy();
+            lightbox = null;
+        };
+    }, []);
+
+    return (
+        <div id="gallery" className="pswp-gallery w-full lg:px-0 lg:-ml-10 mt-5">
+            <div className="relative w-full flex gap-6 snap-x snap-mandatory overflow-x-auto pb-14">
+                <div className="snap-end scroll-mx-6 shrink-0 hidden lg:block">
+                    <div className="shrink-0 w-3 lg:w-5 md:w-5  sm:w-10 sm:-mr-[2px]"></div>
+                </div>
+                {data.map((item, i) => (
+                    <div className="snap-end scroll-mx-6 shrink-0 w-72" key={i}>
+                        <GalleryItems src={item.field_media_image_export} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Gallery;
+
+
+
+import React, { useEffect, useState } from "react";
+import LightGallery from "lightgallery/react";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import Masonry from "masonry-layout";
+import imagesLoaded from "imagesloaded";
+
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-share.css";
+import "lightgallery/css/lg-thumbnail.css";
+
+import axios from "../api";
+
+const Gallery = (props) => {
+    const currentLanguage = localStorage.getItem("i18nextLng");
+
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        axios
+            .get(
+                `${import.meta.env.VITE_APP_BACKEND_URL}/api/media/galleria/${props.images}`
+            )
+            .then((response) => {
+                setData(response.data);
+                setIsLoading(false);
+            })
+            .catch((error) => console.log(error));
+    }, []);
+
+    useEffect(() => {
+        const container = document.querySelector(".masonry-gallery-demo");
+        if (container) {
+            const msnry = new Masonry(container, {
+                itemSelector: ".gallery-item",
+                columnWidth: ".grid-sizer",
+                percentPosition: true,
+            });
+
+            imagesLoaded(container).on("progress", function () {
+                msnry.layout();
+            });
+        }
+    }, []);
+
+
+    return (
+        <div className="gallery-wrapper">
+
+            <LightGallery
+                elementClassNames={"masonry-gallery-demo"}
+                plugins={[lgZoom, lgShare, lgHash]}
+                speed={500}
+            >
+                {data.map((item, i) => (
+                    <a
+                        data-lg-size="1600-1067"
+                        key={i}
+                        className="gallery-item w-72"
+                        data-src={`${import.meta.env.VITE_APP_BACKEND_URL}/${item.field_media_image_export}`}
+                        // data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@tobbes_rd'>Tobias Rademacher</a></h4>"
+                    >
+                        {console.log(item.field_media_image_export)}
+
+                        <img
+                            className={`object-cover w-full h-48 shrink-0 w-80 h-40 rounded-lg shadow-xl bg-white`}
+                            src={`${import.meta.env.VITE_APP_BACKEND_URL}/${item.field_media_image_export}`}
+                        />
+                    </a>
+                ))}
+                <a
+                    data-lg-size="1600-1067"
+                    className="gallery-item"
+                    data-src="https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?auto=format&fit=crop&w=1600&q=80"
+                    data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@tobbes_rd'>Tobias Rademacher</a></h4>"
+                >
+                    <img
+                        alt="layers of blue."
+                        className="img-responsive"
+                        src="https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?auto=format&fit=crop&w=240&q=80"
+                    />
+                </a>
+
+                <a
+                    data-lg-size="1600-2400"
+                    className="gallery-item"
+                    data-src="https://images.unsplash.com/photo-1608481337062-4093bf3ed404?auto=format&fit=crop&w=1600&q=80"
+                    data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@therawhunter'>Massimiliano Morosinotto</a></h4>"
+                >
+                    <img
+                        className="img-responsive"
+                        src="https://images.unsplash.com/photo-1608481337062-4093bf3ed404?auto=format&fit=crop&w=240&q=80"
+                    />
+                </a>
+
+                {/* ... continua con tutte le altre immagini ... */}
+            </LightGallery>
+        </div>
+    );
+};
+
+export default Gallery;
+
